@@ -1,4 +1,4 @@
-import { RegisterInterface } from "./interfaces";
+import { RegisterInterface, LoginInterface } from "./interfaces";
 
 export const registerValidation = (
   first_name: string,
@@ -32,6 +32,29 @@ export const registerValidation = (
       error.phone = "Phone number is less than 9 characters";
     }
   }
+  if (email.trim() === "") {
+    error.email = "Email field is empty";
+  } else {
+    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!email.match(regex)) {
+      error.email = "Email is not valid";
+    }
+  }
+  if (password.trim() === "") {
+    error.password = "Password field is empty";
+  }
+  return error;
+};
+
+
+export const loginValidation = (
+  email: string,
+  password: string
+) => {
+  const error: LoginInterface = {
+    email: "",
+    password: ""
+  };
   if (email.trim() === "") {
     error.email = "Email field is empty";
   } else {

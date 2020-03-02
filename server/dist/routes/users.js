@@ -12,11 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const router = express_1.Router();
 const register_controller_1 = require("../controllers/users/register_controller");
+const login_controller_1 = require("../controllers/users/login_controller");
 router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return yield register_controller_1.register(req, res);
 }));
 router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield login(req, res);
+    return yield login_controller_1.login(req, res);
 }));
 exports.default = router;
 //# sourceMappingURL=users.js.map

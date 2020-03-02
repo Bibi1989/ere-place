@@ -7,3 +7,8 @@ export interface RegisterInterface {
     password: string;
     image_url?: string;
 }
+
+export interface LoginInterface {
+    email: string;
+    password: string;
+}

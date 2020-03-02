@@ -23,8 +23,6 @@ export const register = async (req: any, res: any) => {
     image_url
   }: RegisterInterface = req.body;
 
-  console.log(req.body)
-
   const error = registerValidation(
     first_name,
     last_name,

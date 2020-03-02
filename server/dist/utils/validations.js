@@ -40,4 +40,23 @@ exports.registerValidation = (first_name, last_name, phone, is_seller, email, pa
     }
     return error;
 };
+exports.loginValidation = (email, password) => {
+    const error = {
+        email: "",
+        password: ""
+    };
+    if (email.trim() === "") {
+        error.email = "Email field is empty";
+    }
+    else {
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!email.match(regex)) {
+            error.email = "Email is not valid";
+        }
+    }
+    if (password.trim() === "") {
+        error.password = "Password field is empty";
+    }
+    return error;
+};
 //# sourceMappingURL=validations.js.map
