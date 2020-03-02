@@ -22,6 +22,7 @@ exports.Auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
     else {
         return res.status(404).json({ error: "You are not authorize, No Bearer" });
     }
+    // console.log(token);
     if (!token) {
         res.status(404).json({ error: "you are not authorise" });
     }
@@ -31,7 +32,6 @@ exports.Auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
         next();
     }
     catch (error) {
-        console.log({ error: error.message });
         res.status(404).json({ error: error.message });
     }
 });

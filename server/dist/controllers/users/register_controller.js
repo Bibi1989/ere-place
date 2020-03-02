@@ -46,7 +46,7 @@ exports.register = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         user = yield pg_connect_1.db.query(pg_connect_1.sql `INSERT INTO users(first_name, last_name, phone, is_seller, email, password, user_image) VALUES (${first_name}, ${last_name}, ${phone}, ${bool}, ${email}, ${hashedPassword}, ${image_url}) returning *`);
         const token = yield jsonwebtoken_1.default.sign({ user }, process.env.SECRET_KEY);
-        res.header("auth", token);
+        res.header("authorization", token);
         res.json({ data: user, token });
     }
     catch (error) {

@@ -5,7 +5,7 @@ import { LoginInterface } from "../../utils/interfaces";
 import { loginValidation } from "../../utils/validations";
 
 export const login = async (req: any, res: any) => {
-  const { email, password } = req.body;
+  const { email, password }: LoginInterface = req.body;
 
   const error = loginValidation(email, password);
 
@@ -25,7 +25,7 @@ export const login = async (req: any, res: any) => {
       return res.status(404).json({ error: "Password is invalid" });
 
     const token = await jwt.sign({ user }, process.env.SECRET_KEY);
-    res.header("auth", token);
+    res.header("authorization", token);
     res.json({ data: user, token });
     return;
   } catch (error) {

@@ -32,7 +32,7 @@ exports.login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!validPassword)
             return res.status(404).json({ error: "Password is invalid" });
         const token = yield jsonwebtoken_1.default.sign({ user }, process.env.SECRET_KEY);
-        res.header("auth", token);
+        res.header("authorization", token);
         res.json({ data: user, token });
         return;
     }

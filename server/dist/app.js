@@ -7,14 +7,14 @@ const http_errors_1 = __importDefault(require("http-errors"));
 const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
-const index_1 = __importDefault(require("./routes/index"));
+const products_1 = __importDefault(require("./routes/products"));
 const users_1 = __importDefault(require("./routes/users"));
 var app = express_1.default();
 app.use(morgan_1.default("dev"));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(cookie_parser_1.default());
-app.use("/", index_1.default);
+app.use("/api", products_1.default);
 app.use("/users", users_1.default);
 // catch 404 and forward to error handler
 app.use(function (_req, _res, next) {

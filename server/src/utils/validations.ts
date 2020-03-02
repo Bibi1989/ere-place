@@ -46,11 +46,7 @@ export const registerValidation = (
   return error;
 };
 
-
-export const loginValidation = (
-  email: string,
-  password: string
-) => {
+export const loginValidation = (email: string, password: string) => {
   const error: LoginInterface = {
     email: "",
     password: ""
@@ -67,4 +63,44 @@ export const loginValidation = (
     error.password = "Password field is empty";
   }
   return error;
+};
+
+// const product = {
+//   title: "",
+//   category: "",
+//   category_type: "",
+//   description: "",
+//   price: "",
+//   location: "",
+//   image_id: "",
+//   stock: "",
+//   seller_id: ""
+// };
+
+export const productsValidation = (
+  title: string,
+  category: string,
+  category_type: string,
+  description: string,
+  price: string,
+  location: string,
+  image_id: string
+) => {
+  const error = {
+    title: "",
+    category: "",
+    category_type: "",
+    description: "",
+    price: "",
+    location: "",
+    image_id: ""
+  };
+  if (title === "") error.title = "Title field is empty";
+  if (category === "") error.category = "category field is empty";
+  if (category_type === "")
+    error.category_type = "category_type field is empty";
+  if (price === "") error.price = "price field is empty";
+  if (description === "") error.description = "description field is empty";
+  if (location === "") error.location = "location field is empty";
+  if (image_id === "") error.image_id = "image_id field is empty";
 };

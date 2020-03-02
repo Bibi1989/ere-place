@@ -11,6 +11,10 @@ exports.up = pgm => {
       default: pgm.func("uuid_generate_v4()"),
       comment: "This is the id field"
     },
+    title: {
+      type: "VARCHAR(1000)",
+      nonNull: true
+    },
     category: {
       type: "VARCHAR(2000)",
       nonNull: true
@@ -30,13 +34,13 @@ exports.up = pgm => {
       type: "VARCHAR(255)",
       unique: true
     },
-    product_image: {
+    image_id: {
       type: "VARCHAR(2000)",
       nonNull: true
     },
-    user_id: {
-      type: "VARCHAR(2000)",
-      nonNull: true
+    stock: {
+      type: "VARCHAR(255)",
+      default: "1"
     },
     seller_id: {
       type: "VARCHAR(2000)",

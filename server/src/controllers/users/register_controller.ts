@@ -56,7 +56,7 @@ export const register = async (req: any, res: any) => {
       sql`INSERT INTO users(first_name, last_name, phone, is_seller, email, password, user_image) VALUES (${first_name}, ${last_name}, ${phone}, ${bool}, ${email}, ${hashedPassword}, ${image_url}) returning *`
     );
     const token = await jwt.sign({ user }, process.env.SECRET_KEY);
-    res.header("auth", token);
+    res.header("authorization", token);
     res.json({ data: user, token });
   } catch (error) {
     res.status(404).json({ error: error.message });

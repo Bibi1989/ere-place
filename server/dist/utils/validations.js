@@ -59,4 +59,40 @@ exports.loginValidation = (email, password) => {
     }
     return error;
 };
+// const product = {
+//   title: "",
+//   category: "",
+//   category_type: "",
+//   description: "",
+//   price: "",
+//   location: "",
+//   image_id: "",
+//   stock: "",
+//   seller_id: ""
+// };
+exports.productsValidation = (title, category, category_type, description, price, location, image_id) => {
+    const error = {
+        title: "",
+        category: "",
+        category_type: "",
+        description: "",
+        price: "",
+        location: "",
+        image_id: ""
+    };
+    if (title === "")
+        error.title = "Title field is empty";
+    if (category === "")
+        error.category = "category field is empty";
+    if (category_type === "")
+        error.category_type = "category_type field is empty";
+    if (price === "")
+        error.price = "price field is empty";
+    if (description === "")
+        error.description = "description field is empty";
+    if (location === "")
+        error.location = "location field is empty";
+    if (image_id === "")
+        error.image_id = "image_id field is empty";
+};
 //# sourceMappingURL=validations.js.map

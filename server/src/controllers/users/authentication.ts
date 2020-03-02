@@ -9,6 +9,7 @@ export const Auth = async (req: any, res: Response, next: NextFunction) => {
   } else {
     return res.status(404).json({ error: "You are not authorize, No Bearer" });
   }
+  // console.log(token);
 
   if (!token) {
     res.status(404).json({ error: "you are not authorise" });
@@ -19,7 +20,6 @@ export const Auth = async (req: any, res: Response, next: NextFunction) => {
     req.user = decoded;
     next();
   } catch (error) {
-    console.log({ error: error.message });
     res.status(404).json({ error: error.message });
   }
 };
