@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_connect_1 = require("../../models/pg-connect");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const validations_1 = require("../../utils/validations");
 exports.login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
@@ -22,10 +23,21 @@ exports.login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(404).json({ error: error.email });
     if (error.password)
         return res.status(404).json({ error: error.password });
-    let [user] = yield pg_connect_1.db.query(pg_connect_1.sql `SELECT email, password FROM users`);
+    let [user] = yield pg_connect_1.db.query(pg_connect_1.sql `SELECT * FROM users`);
     console.log(user);
     if (!user)
         return res.status(404).json({ error: "User have not register" });
-    const validPassword = yield bcryptjs_1.default.compare(password, user.password);
+    try {
+        const validPassword = yield bcryptjs_1.default.compare(password, user.password);
+        if (!validPassword)
+            return res.status(404).json({ error: "Password is invalid" });
+        const token = yield jsonwebtoken_1.default.sign({ user }, process.env.SECRET_KEY);
+        res.header("auth", token);
+        res.json({ data: user, token });
+        return;
+    }
+    catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
 });
 //# sourceMappingURL=login_controller.js.map
