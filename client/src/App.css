@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 0 10%;
+  /* background-color: #55555586; */
+}
