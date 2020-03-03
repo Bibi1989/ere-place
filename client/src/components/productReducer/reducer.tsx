@@ -6,9 +6,6 @@ const initialState = {
   product: {},
   order: []
 };
-// const initialState: Products[] = []
-
-// type Action = GetProducts
 
 export default (state = initialState, action: any) => {
   switch (action.type) {
@@ -18,13 +15,9 @@ export default (state = initialState, action: any) => {
         products: action.products
       };
     case SINGLE_PRODUCT:
-      const product = state.products.filter(
-        (product: Products) => product.id === parseInt(action.id)
-      );
-      console.log(typeof action.id);
       return {
         ...state,
-        product: product[0]
+        product: action.product
       };
     case ADD_PRODUCTS:
       return {

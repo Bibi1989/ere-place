@@ -10,11 +10,12 @@ export const SingleView = styled.div`
 
     .second-section-image {
       width: 100%;
-      height: 70vh;
+      max-height: 70vh;
+      overflow-y: hidden;
 
       img {
         width: 100%;
-        max-height: 100%;
+        min-height: 100%;
       }
     }
 
@@ -26,9 +27,15 @@ export const SingleView = styled.div`
           margin: 0;
           text-transform: capitalize;
         }
-        p:last-child{
-            margin-bottom: 1rem;
-            font-size: 2rem;
+        p:last-child {
+          margin-bottom: 1rem;
+          font-size: 2rem;
+        }
+      }
+
+      .second-section-content-two {
+        p {
+          font-size: 1.5rem;
         }
       }
 

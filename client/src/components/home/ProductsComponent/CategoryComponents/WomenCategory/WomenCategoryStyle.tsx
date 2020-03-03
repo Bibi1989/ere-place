@@ -3,7 +3,19 @@ import styled from "styled-components";
 export const Div = styled.div`
   padding: 2% 0;
   h1 {
+    font-size: 2.5rem;
+    color: #555;
     text-align: center;
+  }
+  button {
+    border: 1px solid #999;
+    padding: 1rem 2rem;
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    outline: 0;
   }
 `;
 
@@ -11,7 +23,7 @@ export const Product = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 3%;
-  margin: 3% 5% 10% 5%;
+  padding: 1% 15% 1% 15%;
 
   .second-section-card {
     display: flex;
@@ -41,14 +53,14 @@ export const Product = styled.div`
     }
 
     .second-section-image {
-      max-height: 210px;
+      max-height: 300px;
       position: relative;
       overflow-x: hidden;
       overflow-y: hidden;
       transition: all 0.7s ease-in;
       img {
         max-width: 100%;
-        min-height: 250px;
+        min-height: 300px;
       }
       .second-section-overlay {
         position: absolute;

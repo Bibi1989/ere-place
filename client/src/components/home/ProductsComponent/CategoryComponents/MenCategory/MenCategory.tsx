@@ -1,24 +1,30 @@
 import React from "react";
-import { Product, Div } from "./SecondSectionStyle";
-import { Link } from "react-router-dom";
+import { getProducts } from "../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../productReducer/actions";
+import { Link } from "react-router-dom";
+import { Product, Div } from "./MenCategoryStyle";
 
-const SecondSection = () => {
+const MenCategory = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     getProducts(dispatch);
+
     // eslint-disable-next-line
   }, []);
+
   const products = useSelector(
     ({ productReducer }: any) => productReducer.products
   );
 
+  const men_products = products.filter(
+    (men: any) => men.category.toLowerCase() === "men"
+  );
+
   return (
     <Div>
-      <h1>Latest Collections</h1>
+        <h1>Men Wears</h1>
       <Product>
-        {products.map((product: any) => (
+        {men_products.map((product: any) => (
           <div key={product.id} className='second-section-card'>
             <div className='second-section-image'>
               <img src={product.image_url} alt={product.title} />
@@ -58,8 +64,11 @@ const SecondSection = () => {
           </div>
         ))}
       </Product>
+      <button>View More...</button>
     </Div>
   );
 };
 
-export default SecondSection;
+export default MenCategory;
+
+// const Div = styled.div``;

@@ -3,38 +3,39 @@ import { SingleView } from "./SingleProductStyle";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct, getProducts } from "../../../productReducer/actions";
-import { Products } from "../../../productReducer/interfaces";
 
 const SingleProduct = () => {
-  const { singleId }: any = useParams<any>();
+  const { singleId }: any = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     getSingleProduct(dispatch, singleId);
     getProducts(dispatch);
-  }, [dispatch]);
-  const products = useSelector(
-    ({ productReducer }: any) => productReducer.products
-  );
 
-  const product = products.filter(
-    (pr: Products) => pr.id === parseInt(singleId)
-  )[0];
-  console.log(product);
+    // eslint-disable-next-line
+  }, [dispatch]);
+  const product = useSelector(
+    ({ productReducer }: any) => productReducer.product
+  );
   return (
     <SingleView>
       <div className='second-section-card'>
         <div className='second-section-image'>
-          <img src={`/images/fashion1.jpg`} alt='fash1' />
+          <img
+            src={product !== undefined && product.image_url}
+            alt={product.title}
+          />
         </div>
         <div className='second-section-detail'>
           <div className='second-section-content-one'>
             <p>{product !== undefined && product.title}</p>
+            <p>{product.description}</p>
             <p>
               <span>$</span> {product !== undefined && product.price}
             </p>
           </div>
-          <div className='second-section-content-two'></div>
-          <p>{product !== undefined && product.location}</p>
+          <div className='second-section-content-two'>
+            <p>{product !== undefined && product.location}</p>
+          </div>
 
           <div className='second-section-overlay'>
             <div className='overlay-icons'>

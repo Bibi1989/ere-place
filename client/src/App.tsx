@@ -8,6 +8,8 @@ import NavBar from "./components/home/NavBar/NavBar";
 import SideBar from "./components/home/SideBar/SideBar";
 import ProductSection from "./components/home/ProductsComponent/ProductSection";
 import SingleProduct from "./components/home/ProductsComponent/SingleProduct/SingleProduct";
+import AddProducts from "./components/home/AddProducts/AddProducts";
+import TrySomething from "./components/home/TrySomething";
 
 function App() {
   return (
@@ -22,12 +24,14 @@ function App() {
                 <ProductSection />
               </>
             </div>
+            <TrySomething />
           </Route>
           <Route exact path='/single/:singleId'>
             <SingleProduct />
           </Route>
           <Route exact path='/show'>
             <ShowProducts />
+            <AddProducts />
           </Route>
         </Switch>
       </Router>
