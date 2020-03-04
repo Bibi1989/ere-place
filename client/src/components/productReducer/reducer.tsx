@@ -10,9 +10,10 @@ const initialState = {
 export default (state = initialState, action: any) => {
   switch (action.type) {
     case GET_PRODUCTS:
+      const reverseProducts = action.products.reverse();
       return {
         ...state,
-        products: action.products
+        products: reverseProducts
       };
     case SINGLE_PRODUCT:
       return {
