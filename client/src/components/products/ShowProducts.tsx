@@ -15,7 +15,6 @@ const ShowProducts = () => {
     ({ productReducer }: any) => productReducer.products
   );
   const order = useSelector(({ productReducer }: any) => productReducer.order);
-  console.log(products.length);
   const len: number = products.length;
   const productForm: Form = {
     title: "",
@@ -54,7 +53,6 @@ const ShowProducts = () => {
     (a: any, v: any) => (a = a + parseInt(v.price)),
     0
   );
-  console.log(total);
 
   const ListProducts = products.map((product: Products) => (
     <div

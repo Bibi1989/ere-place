@@ -12,7 +12,7 @@ const SecondSection = () => {
   }, []);
   const products = useSelector(
     ({ productReducer }: any) => productReducer.products
-  );
+  ).slice(0, 6);
 
   return (
     <Div>

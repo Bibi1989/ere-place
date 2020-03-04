@@ -10,6 +10,8 @@ import ProductSection from "./components/home/ProductsComponent/ProductSection";
 import SingleProduct from "./components/home/ProductsComponent/SingleProduct/SingleProduct";
 import AddProducts from "./components/home/AddProducts/AddProducts";
 import TrySomething from "./components/home/TrySomething";
+import AllMen from "./components/home/ProductsComponent/CategoryComponents/AllProducts/AllMen/AllMen";
+import AllWomen from "./components/home/ProductsComponent/CategoryComponents/AllProducts/AllWomen/AllWomen";
 
 function App() {
   return (
@@ -25,6 +27,12 @@ function App() {
               </>
             </div>
             <TrySomething />
+          </Route>
+          <Route exact path='/men'>
+            <AllMen />
+          </Route>
+          <Route exact path='/women'>
+            <AllWomen />
           </Route>
           <Route exact path='/single/:singleId'>
             <SingleProduct />

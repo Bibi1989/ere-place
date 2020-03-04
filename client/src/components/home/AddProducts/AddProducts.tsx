@@ -53,10 +53,9 @@ const AddProducts = () => {
       ...form,
       image_url: imageUrl
     };
-    console.log(data);
     postProduct(data);
   };
-  //   console.log(form);
+
   return (
     <Div>
       <form onSubmit={onsubmit}>

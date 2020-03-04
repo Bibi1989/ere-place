@@ -1,10 +1,10 @@
 import React from "react";
-import { getProducts } from "../../../../productReducer/actions";
+import { getProducts } from "../../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Product, Div } from "./MenCategoryStyle";
+import { Product, Div } from "./AllWomenStyle";
 
-const MenCategory = () => {
+const AllWomen = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     getProducts(dispatch);
@@ -16,22 +16,15 @@ const MenCategory = () => {
     ({ productReducer }: any) => productReducer.products
   );
 
-  let men_products = products
-    .filter((men: any) => men.category.toLowerCase() === "men")
-    .slice(0, 3);
-
-  const handleMore = () => {
-    men_products = products
-      .filter((men: any) => men.category.toLowerCase() === "men")
-      .slice(0, 6);
-    console.log(men_products);
-  };
+  const women_products = products.filter(
+    (women: any) => women.category.toLowerCase() === "women"
+  );
 
   return (
     <Div>
       <h1>Men Wears</h1>
       <Product>
-        {men_products.map((product: any) => (
+        {women_products.map((product: any) => (
           <div key={product.id} className='second-section-card'>
             <div className='second-section-image'>
               <img src={product.image_url} alt={product.title} />
@@ -71,11 +64,9 @@ const MenCategory = () => {
           </div>
         ))}
       </Product>
-      <button onClick={handleMore}>View More...</button>
+      <button>View More...</button>
     </Div>
   );
 };
 
-export default MenCategory;
-
-// const Div = styled.div``;
+export default AllWomen;
