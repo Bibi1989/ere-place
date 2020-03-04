@@ -7,6 +7,22 @@ export interface Products {
   location: string;
 }
 
+export interface Productss {
+  id: string;
+  title: string;
+  category: string;
+  category_type: string;
+  description: string;
+  price: string;
+  image_url: string;
+  stock: string;
+  age_to: string;
+  age_from: string;
+  seller_id: string;
+  createdAt: string;
+  location: string;
+}
+
 // actions interface
 export interface GetProducts {
   type: typeof GET_PRODUCTS;

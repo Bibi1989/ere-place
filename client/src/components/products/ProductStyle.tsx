@@ -11,7 +11,7 @@ export const Product = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 3%;
-  padding: 3% 5% 5% 5%;
+  padding: 3% 0% 5% 5%;
 
   .second-section-card {
     display: flex;

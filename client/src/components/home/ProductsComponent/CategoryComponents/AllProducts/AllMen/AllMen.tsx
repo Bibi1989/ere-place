@@ -64,7 +64,7 @@ const AllMen = () => {
           </div>
         ))}
       </Product>
-      <button>View More...</button>
+      {/* <button>View More...</button> */}
     </Div>
   );
 };

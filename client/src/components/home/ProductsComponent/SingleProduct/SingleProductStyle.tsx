@@ -63,3 +63,7 @@ export const SingleView = styled.div`
     }
   }
 `;
+
+export const Div = styled.div`
+  padding: 5% 10%;
+`;

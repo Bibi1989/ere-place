@@ -21,9 +21,9 @@ export const Div = styled.div`
 
 export const Product = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 3%;
-  padding: 1% 15% 1% 15%;
+  padding: 1% 10% 1% 10%;
 
   .second-section-card {
     display: flex;
