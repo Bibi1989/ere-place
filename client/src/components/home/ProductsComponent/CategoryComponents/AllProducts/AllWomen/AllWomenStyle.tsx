@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 2% 0;
   h1 {
     font-size: 2.5rem;
@@ -16,6 +18,40 @@ export const Div = styled.div`
     display: block;
     margin: 0 auto;
     outline: 0;
+  }
+
+  .select {
+    align-self: flex-end;
+    color: #777;
+    border: none;
+    outline: none;
+    padding-right: 10%;
+    padding-bottom: 1%;
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    select {
+      color: #777;
+      border: none;
+      outline: none;
+    }
+  }
+
+  .my-node-enter {
+    opacity: 0;
+  }
+  .my-node-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+  .my-node-exit {
+    opacity: 1;
+  }
+  .my-node-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
   }
 `;
 

@@ -4,9 +4,21 @@ export const Div = styled.div`
   padding: 2% 0;
   display: flex;
   flex-direction: column;
-  select {
+  .select {
     align-self: flex-end;
-    text-align: center;
+    color: #777;
+    border: none;
+    outline: none;
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    select {
+      color: #777;
+      border: none;
+      outline: none;
+    }
   }
 `;
 

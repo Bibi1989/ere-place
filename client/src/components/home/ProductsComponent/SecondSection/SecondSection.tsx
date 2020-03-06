@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../productReducer/actions";
+import { getProducts, addOrder } from "../../../productReducer/actions";
 import ProductComponent from "../../../products/ProductComponent";
 import { Productss } from "../../../productReducer/interfaces";
 import { Div } from "./SecondSectionStyle";
@@ -37,18 +37,33 @@ const SecondSection = () => {
     }
   };
 
+  const handleCart = (product: any) => {
+    addOrder(dispatch, product);
+  };
+
   return (
-    <Div>
-      <select name='' onChange={handleSelect}>
-        <option value=''>Select Option</option>
-        <option value='date'>Sort by date</option>
-        <option value='low_high'>Price: lowest - Highest</option>
-        <option value='high_low'>Price: Highest - Lowest</option>
-      </select>
+    <Div className='second-section-mobile'>
+      <div className='select'>
+        <i className='fas fa-sort-amount-down-alt'></i>
+        <select name='' onChange={handleSelect}>
+          <option value=''>Sort Latest collections</option>
+          <option value='date'>Sort by date</option>
+          <option value='low_high'>Price: lowest - Highest</option>
+          <option value='high_low'>Price: Highest - Lowest</option>
+        </select>
+      </div>
       {state ? (
-        <ProductComponent products={state} title='Latest Collections' />
+        <ProductComponent
+          products={state}
+          title='Latest Collections'
+          handleCart={handleCart}
+        />
       ) : (
-        <ProductComponent products={products} title='Latest Collections' />
+        <ProductComponent
+          products={products}
+          title='Latest Collections'
+          handleCart={handleCart}
+        />
       )}
     </Div>
   );

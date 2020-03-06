@@ -58,7 +58,7 @@ const SingleProduct = () => {
         </div>
       </SingleView>
       <Div>
-        <ProductComponent products={products} title='Other Collections' />
+        <ProductComponent products={products} title='You May Also Like' />
       </Div>
     </>
   );

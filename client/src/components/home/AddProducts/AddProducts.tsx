@@ -101,7 +101,7 @@ const AddProducts = () => {
           placeholder='stock'
           onChange={handleInput}
         />
-        <input type='file' name='file' onChange={hancha} multiple />
+        <input type='file' name='file' onChange={hancha} />
         {imageUrl && <button type='submit'>Submit</button>}
       </form>
     </Div>

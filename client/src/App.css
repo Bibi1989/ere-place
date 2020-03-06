@@ -10,3 +10,19 @@
   padding: 0 8%;
   /* background-color: #55555586; */
 }
+
+@media (max-width: 1100px) {
+  .App {
+    grid-template-columns: 30% 70%;
+    padding: 0 2%;
+  }
+}
+@media (max-width: 700px) {
+  .App {
+    grid-template-columns: 100%;
+    padding: 0 3%;
+  }
+  .second-section-mobile {
+    grid-template-columns: 1fr;
+  }
+}

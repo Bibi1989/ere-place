@@ -1,5 +1,5 @@
 import React from "react";
-import { getProducts } from "../../../../productReducer/actions";
+import { getProducts, addOrder } from "../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Div } from "./WomenCategoryStyle";
@@ -21,9 +21,17 @@ const WomenCategory = () => {
     .filter((women: any) => women.category.toLowerCase() === "women")
     .slice(0, 3);
 
+  const handleCart = (product: any) => {
+    addOrder(dispatch, product);
+  };
+
   return (
     <Div>
-      <ProductComponent products={women_products} title='Women Wears' />
+      <ProductComponent
+        products={women_products}
+        title='Women Wears'
+        handleCart={handleCart}
+      />
       <button>
         <Link className='links' to='/women'>
           View More...

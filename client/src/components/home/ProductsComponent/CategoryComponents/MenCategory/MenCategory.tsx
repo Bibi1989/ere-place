@@ -1,5 +1,5 @@
 import React from "react";
-import { getProducts } from "../../../../productReducer/actions";
+import { getProducts, addOrder } from "../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Div } from "./MenCategoryStyle";
@@ -21,16 +21,23 @@ const MenCategory = () => {
     .filter((men: any) => men.category.toLowerCase() === "men")
     .slice(0, 3);
 
-  // const handleMore = () => {
-  //   men_products = products
-  //     .filter((men: any) => men.category.toLowerCase() === "men")
-  //     .slice(0, 6);
-  // };
+  const handleCart = (product: any) => {
+    addOrder(dispatch, product);
+  };
 
   return (
     <Div>
-      <ProductComponent products={men_products} title='Men Wears' />;
-      <button><Link className="links" to='/men'>View More...</Link></button>
+      <ProductComponent
+        products={men_products}
+        title='Men Wears'
+        handleCart={handleCart}
+      />
+      ;
+      <button>
+        <Link className='links' to='/men'>
+          View More...
+        </Link>
+      </button>
     </Div>
   );
 };

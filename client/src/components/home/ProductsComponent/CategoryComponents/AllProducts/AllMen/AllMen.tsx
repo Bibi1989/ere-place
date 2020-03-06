@@ -1,10 +1,12 @@
 import React from "react";
-import { getProducts } from "../../../../../productReducer/actions";
+import { getProducts, addOrder } from "../../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Product, Div } from "./AllMenStyle";
+import { Productss } from "../../../../../productReducer/interfaces";
 
 const AllMen = () => {
+  const [state, setState] = React.useState();
   const dispatch = useDispatch();
   React.useEffect(() => {
     getProducts(dispatch);
@@ -16,13 +18,54 @@ const AllMen = () => {
     ({ productReducer }: any) => productReducer.products
   );
 
-  const men_products = products.filter(
-    (men: any) => men.category.toLowerCase() === "men"
+  let men_products = products.filter(
+    (men: Productss) => men.category.toLowerCase() === "men"
   );
+
+  const handleSelect = (e: any) => {
+    const sortByDate = [...products]
+      .filter((men: Productss) => men.category.toLowerCase() === "men")
+      .reverse();
+    const sortByPriceLowHigh = [...products]
+      .filter((men: Productss) => men.category.toLowerCase() === "men")
+      .sort(
+        (a: Productss, b: Productss) => parseInt(a.price) - parseInt(b.price)
+      );
+    const sortByPriceHighLow = [...products]
+      .filter((men: Productss) => men.category.toLowerCase() === "men")
+      .sort(
+        (a: Productss, b: Productss) => parseInt(b.price) - parseInt(a.price)
+      );
+    if (e.target.value === "date") {
+      return setState(sortByDate);
+    }
+    if (e.target.value === "low_high") {
+      return setState(sortByPriceLowHigh);
+    }
+    if (e.target.value === "high_low") {
+      return setState(sortByPriceHighLow);
+    }
+  };
+
+  // filtering products
+  men_products = state ? state : men_products;
+
+  const handleCart = (product: any) => {
+    addOrder(dispatch, product);
+  };
 
   return (
     <Div>
       <h1>Men Wears</h1>
+      <div className='select'>
+        <i className='fas fa-sort-amount-down-alt'></i>
+        <select name='' onChange={handleSelect}>
+          <option value=''>Sort collections</option>
+          <option value='date'>Date: new - old</option>
+          <option value='low_high'>Price: lowest - Highest</option>
+          <option value='high_low'>Price: Highest - Lowest</option>
+        </select>
+      </div>
       <Product>
         {men_products.map((product: any) => (
           <div key={product.id} className='second-section-card'>
@@ -31,17 +74,14 @@ const AllMen = () => {
               <div className='second-section-overlay'>
                 <div className='overlay-icons'>
                   <div className='cart'>
-                    {/* <span>View Product</span> */}
                     <Link to={`/single/${product.id}`}>
                       <i className='fas fa-external-link-alt'></i>
                     </Link>
                   </div>
-                  <div className='cart'>
-                    {/* <span>Add To Cart</span> */}
+                  <div className='cart' onClick={handleCart}>
                     <i className='fas fa-cart-plus'></i>
                   </div>
                   <div className='cart'>
-                    {/* <span>Add To Wishlist</span> */}
                     <i className='fas fa-heart'></i>
                   </div>
                 </div>
@@ -49,7 +89,11 @@ const AllMen = () => {
             </div>
             <div className='second-section-detail'>
               <div className='second-section-content-one'>
-                <p>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
+                <p>
+                  {product.title.length > 16
+                    ? `${product.title.slice(0, 16)}...`
+                    : product.title}
+                </p>
                 <p>
                   {product.location[0].toUpperCase() +
                     product.location.slice(1)}

@@ -8,6 +8,34 @@ export const Nav = styled.nav`
   padding: 0 15%;
   box-shadow: 0px 2px 25px #ddd;
 
+  @media (max-width: 1100px) {
+    justify-content: space-evenly;
+    padding: 0 2%;
+
+    input {
+      width: 0%;
+      padding: 3% 2%;
+      font-size: 1rem;
+      border: 0.3px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 15px #ddd;
+      outline: none;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 0 2%;
+
+    input {
+      width: 0%;
+      padding: 6% 3%;
+      font-size: 1rem;
+      border: 0.3px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 15px #ddd;
+      outline: none;
+    }
+  }
+
   .nav-logo {
     color: gold;
   }
@@ -34,7 +62,7 @@ export const Nav = styled.nav`
     align-self: center;
 
     p {
-      padding: 0.5rem 1rem;
+      padding: 1rem 1rem;
       margin: 0 1rem;
       border: 0.3px solid #ccc;
       border-radius: 5px;
@@ -48,8 +76,19 @@ export const Nav = styled.nav`
     }
     p:nth-child(2) {
       color: #eee;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       background: orange;
+
+      .links {
+        text-decoration: none;
+        color: #eee;
+      }
+
+      sup {
+        color: #eee;
+        font-size: 1.2rem;
+        padding-left: 0.5rem;
+      }
     }
   }
 `;

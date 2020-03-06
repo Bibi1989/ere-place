@@ -1,10 +1,20 @@
-import { GET_PRODUCTS, ADD_PRODUCTS, ADD_ORDER, SINGLE_PRODUCT } from "./types";
-import { Products } from "./interfaces";
+import {
+  GET_PRODUCTS,
+  ADD_PRODUCTS,
+  ADD_ORDER,
+  SINGLE_PRODUCT,
+  GET_ORDERS,
+  DELETE_ORDER
+} from "./types";
+// import { Products } from "./interfaces";
 
 const initialState = {
   products: [],
   product: {},
-  order: []
+  order: {},
+  orders: [],
+  NoOfCarts: 0,
+  delete_msg: ""
 };
 
 export default (state = initialState, action: any) => {
@@ -25,13 +35,22 @@ export default (state = initialState, action: any) => {
         ...state,
         products: [action.product, ...state.products]
       };
-    case ADD_ORDER:
-      const order = state.products.filter(
-        (product: Products) => product.id === action.id
-      );
+    case GET_ORDERS:
+      const NoOfCarts = action.payload.length;
       return {
         ...state,
-        order: [order[0], ...state.order]
+        orders: action.payload,
+        NoOfCarts
+      };
+    case ADD_ORDER:
+      return {
+        ...state,
+        order: action.order
+      };
+    case DELETE_ORDER:
+      return {
+        ...state,
+        delete_msg: action.payload
       };
     default:
       return state;

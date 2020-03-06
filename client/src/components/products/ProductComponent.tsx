@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Product, Div } from "./ProductStyle";
 
-const ProductComponent = ({ products, title }: any) => {
+const ProductComponent = ({ products, title, handleCart }: any) => {
   return (
     <Div>
       <h1>{title}</h1>
-      <Product>
+      <Product className="second-section-mobile">
         {products !== undefined &&
           products.map((product: any) => (
             <div key={product.id} className='second-section-card'>
@@ -17,12 +17,10 @@ const ProductComponent = ({ products, title }: any) => {
                     <div className='cart'>
                       {/* <span>View Product</span> */}
                       <Link to={`/single/${product.id}`}>
-                        <i
-                          className='fas fa-external-link-alt'
-                        ></i>
+                        <i className='fas fa-external-link-alt'></i>
                       </Link>
                     </div>
-                    <div className='cart'>
+                    <div className='cart' onClick={() => handleCart(product)}>
                       {/* <span>Add To Cart</span> */}
                       <i className='fas fa-cart-plus'></i>
                     </div>
