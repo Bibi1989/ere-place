@@ -18,6 +18,15 @@ exports.up = pgm => {
     product_id: {
       type: "VARCHAR(1000)"
     },
+    category: {
+      type: "VARCHAR(1000)"
+    },
+    category_type: {
+      type: "VARCHAR(1000)"
+    },
+    seller_id: {
+      type: "VARCHAR(1000)"
+    },
     product: {
       type: "uuid",
       references: '"products"',

@@ -11,9 +11,11 @@ exports.up = pgm => {
       default: pgm.func("uuid_generate_v4()"),
       comment: "This is the id field"
     },
+    title: {
+      type: "VARCHAR(2000)"
+    },
     category: {
-      type: "VARCHAR(2000)",
-      nonNull: true
+      type: "VARCHAR(2000)"
     },
     category_type: {
       type: "VARCHAR(2000)"
@@ -22,29 +24,26 @@ exports.up = pgm => {
       type: "VARCHAR(2000)"
     },
     description: {
-      type: "TEXT",
-      nonNull: true
+      type: "TEXT"
     },
     price: {
-      type: "VARCHAR(255)",
-      nonNull: true
+      type: "VARCHAR(255)"
     },
     location: {
       type: "VARCHAR(255)"
     },
     product_image: {
+      type: "VARCHAR(2000)"
+    },
+    size: {
+      type: "VARCHAR(2000)"
+    },
+    quantity: {
       type: "VARCHAR(2000)",
-      nonNull: true
+      default: "1"
     },
     seller_id: {
-      type: "VARCHAR(2000)",
-      nonNull: true
-    },
-    userId: {
-      type: "uuid",
-      notNull: true,
-      references: '"users"',
-      onDelete: "cascade"
+      type: "VARCHAR(2000)"
     },
     createdAt: {
       type: "timestamptz(100)",

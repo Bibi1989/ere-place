@@ -1,4 +1,5 @@
 export interface RegisterInterface {
+  id?: string;
   first_name: string;
   last_name: string;
   phone: string;
@@ -14,13 +15,17 @@ export interface LoginInterface {
 }
 
 export interface Products {
+  id?: string;
   title: string;
   category: string;
   category_type: string;
   description: string;
   price: string;
   location: string;
-  image_id: string;
+  image_url: string;
   stock: string;
   seller_id: string;
+  age_to?: string;
+  age_from?: string;
+  size?: string;
 }

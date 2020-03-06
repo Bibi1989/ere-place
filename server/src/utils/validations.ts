@@ -83,8 +83,7 @@ export const productsValidation = (
   category_type: string,
   description: string,
   price: string,
-  location: string,
-  image_id: string
+  location: string
 ) => {
   const error = {
     title: "",
@@ -92,8 +91,7 @@ export const productsValidation = (
     category_type: "",
     description: "",
     price: "",
-    location: "",
-    image_id: ""
+    location: ""
   };
   if (title === "") error.title = "Title field is empty";
   if (category === "") error.category = "category field is empty";
@@ -102,5 +100,7 @@ export const productsValidation = (
   if (price === "") error.price = "price field is empty";
   if (description === "") error.description = "description field is empty";
   if (location === "") error.location = "location field is empty";
-  if (image_id === "") error.image_id = "image_id field is empty";
+
+  return error
 };
+

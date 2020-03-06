@@ -70,15 +70,14 @@ exports.loginValidation = (email, password) => {
 //   stock: "",
 //   seller_id: ""
 // };
-exports.productsValidation = (title, category, category_type, description, price, location, image_id) => {
+exports.productsValidation = (title, category, category_type, description, price, location) => {
     const error = {
         title: "",
         category: "",
         category_type: "",
         description: "",
         price: "",
-        location: "",
-        image_id: ""
+        location: ""
     };
     if (title === "")
         error.title = "Title field is empty";
@@ -92,7 +91,6 @@ exports.productsValidation = (title, category, category_type, description, price
         error.description = "description field is empty";
     if (location === "")
         error.location = "location field is empty";
-    if (image_id === "")
-        error.image_id = "image_id field is empty";
+    return error;
 };
 //# sourceMappingURL=validations.js.map

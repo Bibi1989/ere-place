@@ -24,6 +24,15 @@ exports.up = pgm => {
     },
     description: {
       type: "TEXT",
+    },
+    age_from: {
+      type: "TEXT",
+    },
+    age_to: {
+      type: "TEXT",
+    },
+    size: {
+      type: "TEXT",
       nonNull: true
     },
     price: {
@@ -32,10 +41,10 @@ exports.up = pgm => {
     },
     location: {
       type: "VARCHAR(255)",
-      unique: true
+      nonNull: true
     },
-    image_id: {
-      type: "VARCHAR(2000)",
+    image_url: {
+      type: "VARCHAR(255)",
       nonNull: true
     },
     stock: {
@@ -43,14 +52,7 @@ exports.up = pgm => {
       default: "1"
     },
     seller_id: {
-      type: "VARCHAR(2000)",
-      nonNull: true
-    },
-    user: {
-      type: "uuid",
-      notNull: true,
-      references: '"users"',
-      onDelete: "cascade"
+      type: "VARCHAR(2000)"
     },
     createdAt: {
       type: "timestamptz(100)",
