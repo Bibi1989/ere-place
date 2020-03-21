@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Header, Button, Icon } from "semantic-ui-react";
 import { Div } from "./CartComponentStyle";
 import { getOrders, deleteOrder } from "../productReducer/actions";
@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const CartComponent = () => {
   const dispatch = useDispatch();
+  const [state, setstate] = useState("");
   //   const orders = useSelector(
   //     ({ productReducer }: any) => productReducer.orders
   //   );
   const order: any = localStorage.getItem("fashion");
   let orders = JSON.parse(order);
   const delete_msg = useSelector(
-    ({ productReducer }: any) => productReducer.delete_msg
+    ({ productReducer }: any) => productReducer.order
   );
   const total_price = orders.reduce(
     (a: number, v: any) => (a += parseInt(v.price)),

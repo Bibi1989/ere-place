@@ -52,7 +52,7 @@ export const getOrders = async (dispatch: any) => {
 };
 
 export const addOrder = async (dispatch: any, orders: Products) => {
-  fashion_products.push(orders);
+  fashion_products.push({ ...orders, quantity: "1" });
   localStorage.setItem("fashion", JSON.stringify(fashion_products));
   const order: any = await axios.post(
     `http://localhost:4000/api/orders`,
