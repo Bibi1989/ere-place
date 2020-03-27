@@ -74,12 +74,13 @@ export const Product = styled.div`
 
     .second-section-image {
       max-height: 300px;
+      width: 100%;
       position: relative;
       overflow-x: hidden;
       overflow-y: hidden;
       transition: all 0.7s ease-in;
       img {
-        max-width: 100%;
+        width: 100%;
         min-height: 300px;
       }
       .second-section-overlay {

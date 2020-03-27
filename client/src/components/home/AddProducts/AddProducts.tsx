@@ -9,7 +9,7 @@ const upload_preset: any = process.env.REACT_APP_UPLOAD_PRESET;
 const cloud_base_name: any = process.env.REACT_APP_CLOUDINARY_BASE_URL;
 
 const AddProducts = () => {
-  const [imageUrl, setImageUrl] = React.useState("");
+  const [imageUrl, setImageUrl] = React.useState<any[]>([]);
   const [form, setForm] = React.useState({
     title: "",
     category: "",
@@ -19,8 +19,10 @@ const AddProducts = () => {
     location: "",
     stock: ""
   });
+  let d: any = [];
   const hancha = (e: any) => {
     const data = new FormData();
+    console.log(e.target.files);
     data.append("file", e.target.files[0]);
     data.append("upload_preset", upload_preset);
     axios
@@ -29,10 +31,14 @@ const AddProducts = () => {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
-      .then(res => setImageUrl(res.data.secure_url))
+      .then(res => {
+        console.log(res.data.secure_url);
+        d.concat(res.data.secure_url);
+        setImageUrl([...imageUrl, res.data.secure_url]);
+      })
       .catch(err => console.log(err.response));
   };
-  console.log(imageUrl);
+  console.log({d, imageUrl});
   const handleInput = (e: any) => {
     setForm({
       ...form,
@@ -40,18 +46,20 @@ const AddProducts = () => {
     });
   };
   const postProduct = async (body: any) => {
-    await axios.post("http://localhost:4000/api/products", body, {
+    await axios.post(`http://localhost:4000/api/products`, body, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpbeyJpZCI6ImE0MzRhNTkyLWNmZTgtNDczZC1hOGZlLTU5ZGE2N2FlOTU2ZCIsImZpcnN0X25hbWUiOiJCaWJpIiwibGFzdF9uYW1lIjoiQnJvIiwicGhvbmUiOiIxMjM0NTY3ODkwMSIsImVtYWlsIjoiYmliaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCR5UDVkWTcwT2YvLmkuZUx4eGhmZjN1N3d6WURZV1dtaU9tQkZldnBqUzlFSmlYZUtkNGZNbSIsInVzZXJfaW1hZ2UiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9iaWJpMTk4OTE2L2ltYWdlL3VwbG9hZC92MTU2NjI4NDc4Ny9zYW1wbGUuanBnIiwiaXNfc2VsbGVyIjpmYWxzZSwiY3JlYXRlZEF0IjoiMjAyMC0wMy0wMlQyMTo1Njo1NC41MzNaIn1dLCJpYXQiOjE1ODMxODYyMTR9.Xh2SCMuLa1nX1dCvu0M6yhncfq4_SauQdnYT4VPXSf0`
+        Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpbeyJpZCI6ImE0MzRhNTkyLWNmZTgtNDczZC1hOGZlLTU5ZGE2N2FlOTU2ZCIsImZpcnN0X25hbWUiOiJCaWJpIiwibGFzdF9uYW1lIjoiQnJvIiwicGhvbmUiOiIxMjM0NTY3ODkwMSIsImVtYWlsIjoiYmliaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCR5UDVkWTcwT2YvLmkuZUx4eGhmZjN1N3d6WURZV1dtaU9tQkZldnBqUzlFSmlYZUtkNGZNbSIsInVzZXJfaW1hZ2UiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9iaWJpMTk4OTE2L2ltYWdlL3VwbG9hZC92MTU2NjI4NDc4Ny9zYW1wbGUuanBnIiwiaXNfc2VsbGVyIjpmYWxzZSwiY3JlYXRlZEF0IjoiMjAyMC0wMy0wMlQyMTo1Njo1NC41MzNaIn1dLCJpYXQiOjE1ODMxODYyMTR9.Xh2SCMuLa1nX1dCvu0M6yhncfq4_SauQdnYT4VPXSf0`
       }
     });
   };
   const onsubmit = (e: any) => {
     e.preventDefault();
+    let image = JSON.stringify(imageUrl);
+    console.log(image)
     const data = {
       ...form,
-      image_url: imageUrl
+      image_url: image
     };
     postProduct(data);
   };
@@ -102,7 +110,7 @@ const AddProducts = () => {
           onChange={handleInput}
         />
         <input type='file' name='file' onChange={hancha} />
-        {imageUrl && <button type='submit'>Submit</button>}
+        {imageUrl.length !== 0 && <button type='submit'>Submit</button>}
       </form>
     </Div>
   );

@@ -1,38 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Table, Header, Button, Icon } from "semantic-ui-react";
-import { Div } from "./CartComponentStyle";
-import { getOrders, deleteOrder } from "../productReducer/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { Div } from "../orders/CartComponentStyle";
+import { deleteWishList } from "../productReducer/actions";
+import { useDispatch } from "react-redux";
 
-const CartComponent = () => {
-  const dispatch = useDispatch();
+const WishList = () => {
   const [state, setstate] = useState(1);
+  const dispatch = useDispatch();
   //   const orders = useSelector(
   //     ({ productReducer }: any) => productReducer.orders
   //   );
-  const order: any = localStorage.getItem("fashion");
-  let orders = JSON.parse(order);
-  const delete_msg = useSelector(
-    ({ productReducer }: any) => productReducer.order
-  );
-  const total_price = orders.reduce(
-    (a: number, v: any) => (a += parseInt(v.price) * parseInt(v.quantity)),
-    0
-  );
+  const wish: any = localStorage.getItem("wishlist");
+  let wishlists = JSON.parse(wish);
+  //   const total_price = orders.reduce(
+  //     (a: number, v: any) => (a += parseInt(v.price) * parseInt(v.quantity)),
+  //     0
+  //   );
   //   console.log(total_price);
   useEffect(() => {
     // eslint-disable-next-line
   }, [state]);
-  console.log("Delete msg", delete_msg);
   const removeCart = (id: string) => {
+    console.log(id);
     setstate(c => c + 1);
-    orders = orders.filter((order: any) => order.id !== id);
-    localStorage.setItem("fashion", JSON.stringify(orders));
-    deleteOrder(dispatch, id);
+    wishlists = wishlists.filter((wishlist: any) => wishlist.id !== id);
+    localStorage.setItem("wishlist", JSON.stringify(wishlists));
+    deleteWishList(dispatch, id);
   };
   return (
     <Div>
-      <h1>Your Cart</h1>
+      <h1>Your WishList</h1>
       <Table celled padded>
         <Table.Header>
           <Table.Row>
@@ -48,32 +45,44 @@ const CartComponent = () => {
         </Table.Header>
 
         <Table.Body>
-          {orders.map((order: any) => {
+          {wishlists.map((wishlist: any) => {
             let b: any = [];
-            JSON.parse(order.image_url).map((a: any) => {
+            JSON.parse(wishlist.image_url).map((a: any) => {
               b.push(a);
             });
             return (
-              <Table.Row key={order.id}>
+              <Table.Row key={wishlist.id}>
                 <Table.Cell
                   style={{ padding: "0 !important", margin: "0 !important" }}
                 >
                   <Header as='h2' textAlign='center' style={{ width: "80px" }}>
-                    <img src={b[0]} alt={order.title} style={{width: '100px', height: '100px', borderRadius: '10%'}} />
+                    <img
+                      src={b[0]}
+                      alt={wishlist.title}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        borderRadius: "10%"
+                      }}
+                    />
                   </Header>
                 </Table.Cell>
-                <Table.Cell singleLine>{order.title}</Table.Cell>
+                <Table.Cell singleLine>{wishlist.title}</Table.Cell>
                 <Table.Cell textAlign='right'>
-                  {order.description} <br />
-                  <a href='!#'>{order.category_type}</a>
+                  {wishlist.description} <br />
+                  <a href='!#'>{wishlist.category_type}</a>
                 </Table.Cell>
-                <Table.Cell>{order.category}</Table.Cell>
-                <Table.Cell>{order.quantity}</Table.Cell>
+                <Table.Cell>{wishlist.category}</Table.Cell>
+                {/* <Table.Cell>{wishlist.quantity}</Table.Cell> */}
                 <Table.Cell style={{ width: "100px" }}>
-                  <span>&#8358;</span> {order.price}
+                  <span>&#8358;</span> {wishlist.price}
                   <br />
                   <br />
-                  <Button color='red' icon onClick={() => removeCart(order.id)}>
+                  <Button
+                    color='red'
+                    icon
+                    onClick={() => removeCart(wishlist.id)}
+                  >
                     <Icon name='minus' />
                   </Button>
                 </Table.Cell>
@@ -82,13 +91,8 @@ const CartComponent = () => {
           })}
         </Table.Body>
       </Table>
-
-      <h1>
-        <span>Total Amount: </span> <span>&#8358;</span>{" "}
-        <span>{total_price}</span>
-      </h1>
     </Div>
   );
 };
 
-export default CartComponent;
+export default WishList;

@@ -5,7 +5,7 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15%;
+  padding: 0 9%;
   box-shadow: 0px 2px 25px #ddd;
 
   @media (max-width: 1100px) {
@@ -68,16 +68,17 @@ export const Nav = styled.nav`
       border-radius: 5px;
       box-shadow: 0 2px 15px #ddd;
     }
-    p:nth-child(1) {
+    /* .login {
       color: cyan;
       font-size: 1.3rem;
       box-shadow: 0 2px 15px #eee;
       /* background: orange; */
-    }
-    p:nth-child(2) {
-      color: #eee;
+    } */
+    .login, .register {
+      color: #555;
       font-size: 1.2rem;
-      background: orange;
+      box-shadow: 0 2px 15px #eee;
+      /* background: orange; */
 
       .links {
         text-decoration: none;

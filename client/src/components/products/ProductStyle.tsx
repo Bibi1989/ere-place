@@ -29,6 +29,8 @@ export const Product = styled.div`
     align-items: center;
     text-align: center;
     color: #777;
+    overflow: hidden;
+    border-radius: 40px 0 1px 0;
     transform: scale(1);
 
     .second-section-detail {
@@ -36,8 +38,8 @@ export const Product = styled.div`
       flex-direction: column;
       width: 100%;
       padding: 10px;
-      box-shadow: 0px 2px 15px #ddd;
-      border-radius: 5px;
+      border: 0.6px solid #ddd;
+      border-radius: 0px 0 40px 1px;
 
       .second-section-content-one {
         display: flex;
@@ -51,13 +53,16 @@ export const Product = styled.div`
     }
 
     .second-section-image {
-      max-height: 210px;
+      max-height: 300px;
+      width: 100%;
       position: relative;
+      border: 1px solid #ddd;
       overflow-x: hidden;
       overflow-y: hidden;
+      border-radius: 40px 0 1px 0;
       transition: all 0.7s ease-in;
       img {
-        max-width: 100%;
+        width: 100%;
         min-height: 250px;
       }
       .second-section-overlay {
@@ -95,7 +100,7 @@ export const Product = styled.div`
         justify-content: flex-end;
         align-items: flex-end;
         right: 0;
-        bottom: 5px;
+        bottom: 0px;
         padding: 15px;
         width: 100%;
         height: 100%;

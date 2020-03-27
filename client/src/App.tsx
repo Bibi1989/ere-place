@@ -12,6 +12,7 @@ import TrySomething from "./components/home/TrySomething";
 import AllMen from "./components/home/ProductsComponent/CategoryComponents/AllProducts/AllMen/AllMen";
 import AllWomen from "./components/home/ProductsComponent/CategoryComponents/AllProducts/AllWomen/AllWomen";
 import CartComponent from "./components/orders/CartComponent";
+import WishList from "./components/wishlist/WishList";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path='/cart'>
             <CartComponent />
+          </Route>
+          <Route exact path='/wishlist'>
+            <WishList />
           </Route>
           <Route exact path='/single/:singleId'>
             <SingleProduct />

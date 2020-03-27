@@ -67,46 +67,52 @@ const AllMen = () => {
         </select>
       </div>
       <Product>
-        {men_products.map((product: any) => (
-          <div key={product.id} className='second-section-card'>
-            <div className='second-section-image'>
-              <img src={product.image_url} alt={product.title} />
-              <div className='second-section-overlay'>
-                <div className='overlay-icons'>
-                  <div className='cart'>
-                    <Link to={`/single/${product.id}`}>
-                      <i className='fas fa-external-link-alt'></i>
-                    </Link>
-                  </div>
-                  <div className='cart' onClick={handleCart}>
-                    <i className='fas fa-cart-plus'></i>
-                  </div>
-                  <div className='cart'>
-                    <i className='fas fa-heart'></i>
+        {men_products.map((product: any) => {
+          let b: any = [];
+          JSON.parse(product.image_url).map((a: any) => {
+            b.push(a);
+          });
+          return (
+            <div key={product.id} className='second-section-card'>
+              <div className='second-section-image'>
+                <img src={b[0]} alt={product.title} />
+                <div className='second-section-overlay'>
+                  <div className='overlay-icons'>
+                    <div className='cart'>
+                      <Link to={`/single/${product.id}`}>
+                        <i className='fas fa-external-link-alt'></i>
+                      </Link>
+                    </div>
+                    <div className='cart' onClick={handleCart}>
+                      <i className='fas fa-cart-plus'></i>
+                    </div>
+                    <div className='cart'>
+                      <i className='fas fa-heart'></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className='second-section-detail'>
-              <div className='second-section-content-one'>
-                <p>
-                  {product.title.length > 16
-                    ? `${product.title.slice(0, 16)}...`
-                    : product.title}
-                </p>
-                <p>
-                  {product.location[0].toUpperCase() +
-                    product.location.slice(1)}
-                </p>
+              <div className='second-section-detail'>
+                <div className='second-section-content-one'>
+                  <p>
+                    {product.title.length > 16
+                      ? `${product.title.slice(0, 16)}...`
+                      : product.title}
+                  </p>
+                  <p>
+                    {product.location[0].toUpperCase() +
+                      product.location.slice(1)}
+                  </p>
+                </div>
+                <div className='second-section-content-two'>
+                  <p>
+                    <span>$</span> {product.price}
+                  </p>
+                </div>
               </div>
-              <div className='second-section-content-two'>
-                <p>
-                  <span>$</span> {product.price}
-                </p>
-              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </Product>
       {/* <button>View More...</button> */}
     </Div>

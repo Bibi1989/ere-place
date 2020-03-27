@@ -95,13 +95,13 @@ export const Product = styled.div`
       overflow-y: hidden;
       transition: all 0.7s ease-in;
       img {
-        max-width: 100%;
+        width: 100%;
         min-height: 300px;
       }
       .second-section-overlay {
         position: absolute;
         right: -40px;
-        bottom: 20px;
+        bottom: 0px;
         transition: all 0.5s ease-in;
 
         .overlay-icons {

@@ -23,12 +23,13 @@ export default (state = initialState, action: any) => {
       const reverseProducts = action.products.reverse();
       return {
         ...state,
-        products: reverseProducts
+        products: reverseProducts || []
       };
     case SINGLE_PRODUCT:
+      const image = JSON.parse(action.product.image_url);
       return {
         ...state,
-        product: action.product
+        product: { ...action.product, image }
       };
     case ADD_PRODUCTS:
       return {

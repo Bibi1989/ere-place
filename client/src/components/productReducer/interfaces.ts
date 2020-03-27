@@ -5,6 +5,7 @@ export interface Products {
   unit: string;
   price: string;
   location: string;
+  quantity?: string;
 }
 
 export interface Productss {

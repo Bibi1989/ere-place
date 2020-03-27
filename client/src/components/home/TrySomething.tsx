@@ -28,7 +28,7 @@ const Div = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 1%;
-  padding: 0 8%;
+  padding: 0 10%;
   height: 400px;
   position: relative;
 

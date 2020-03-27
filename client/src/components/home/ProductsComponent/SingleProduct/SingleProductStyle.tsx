@@ -3,6 +3,25 @@ import styled from "styled-components";
 export const SingleView = styled.div`
   padding: 5% 20%;
 
+  .images {
+    height: 20vh;
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 10px;
+    overflow: hidden;
+
+    div {
+      min-width: 100%;
+      height: 20vh;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        min-height: 100%;
+      }
+    }
+  }
   .second-section-card {
     display: grid;
     grid-template-columns: 70% 30%;
@@ -11,7 +30,9 @@ export const SingleView = styled.div`
     .second-section-image {
       width: 100%;
       max-height: 70vh;
+      border-radius: 10px;
       overflow-y: hidden;
+      box-shadow: 0 0 60px #999;
 
       img {
         width: 100%;
