@@ -64,13 +64,17 @@ export const addOrder = async (
   orders: Products,
   quantity: string
 ) => {
+  if (parseInt(quantity) < 0) {
+    alert("Not available");
+  }
   let check = fashion_products.filter(
     (order: Products | any) => order.id === orders.id
   );
   if (check.length > 0) {
     return fashion_products.map((order: Products | any) => {
-      if (order.id === orders.id) {
+      if (order.id === orders.id && order.stock >= "0") {
         order.quantity = parseInt(quantity) + parseInt(order.quantity);
+        order.stock = parseInt(order.stock) - parseInt(quantity);
         localStorage.setItem("fashion", JSON.stringify(fashion_products));
       }
       return order;
@@ -78,7 +82,8 @@ export const addOrder = async (
   }
   fashion_products.push({
     ...orders,
-    quantity: `${quantity === undefined ? "1" : quantity}`
+    quantity: `${quantity === undefined ? "1" : quantity}`,
+    product_id: orders.id
   });
   localStorage.setItem("fashion", JSON.stringify(fashion_products));
   dispatch({ type: ADD_ORDER, payload: fashion_products.length });

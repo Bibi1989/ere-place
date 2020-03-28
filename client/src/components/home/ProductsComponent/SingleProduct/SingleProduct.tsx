@@ -28,6 +28,7 @@ const SingleProduct = () => {
   const product = useSelector(
     ({ productReducer }: any) => productReducer.product
   );
+
   const selectArray: any = [];
 
   for (let i = 0; i < product.stock; i++) {

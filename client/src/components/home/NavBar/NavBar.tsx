@@ -54,7 +54,7 @@ const NavBar = ({ state }: any) => {
         <Menu compact>
           <Menu.Item>
             <Link className='links' to='/cart'>
-              <Icon name='cart' size='large' color='orange' />
+              <Icon name='shopping bag' size='large' color='orange' />
               <Label color='orange' floating>
                 {/* {JSON.parse(orders) === null ? 0 : JSON.parse(orders).length} */}
                 {orderCount}

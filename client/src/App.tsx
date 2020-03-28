@@ -14,6 +14,7 @@ import AllMen from "./components/home/ProductsComponent/CategoryComponents/AllPr
 import AllWomen from "./components/home/ProductsComponent/CategoryComponents/AllProducts/AllWomen/AllWomen";
 import CartComponent from "./components/orders/CartComponent";
 import WishList from "./components/wishlist/WishList";
+import FooterComponent from "./components/home/Footer/Footer";
 
 function App() {
   const [state, setState] = useState(false);
@@ -77,6 +78,7 @@ function App() {
             <AddProducts />
           </Route>
         </Switch>
+        <FooterComponent />
       </Router>
     </Provider>
   );

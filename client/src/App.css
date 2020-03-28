@@ -4,11 +4,14 @@
   box-sizing: border-box;
 }
 
+body {
+  /* background-color: #010024; */
+}
+
 .App {
   display: grid;
   grid-template-columns: 20% 80%;
   padding: 2% 10%;
-  /* background-color: #55555586; */
 }
 
 @media (max-width: 1100px) {
