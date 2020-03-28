@@ -1,34 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Table, Header, Button, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import { Div } from "../orders/CartComponentStyle";
 import { deleteWishList } from "../productReducer/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const WishList = () => {
-  const [state, setstate] = useState(1);
   const dispatch = useDispatch();
-  //   const orders = useSelector(
-  //     ({ productReducer }: any) => productReducer.orders
-  //   );
+  const delete_wishlist = useSelector(
+    ({ productReducer }: any) => productReducer.delete_wishlist
+  );
   const wish: any = localStorage.getItem("wishlist");
   let wishlists = JSON.parse(wish);
-  //   const total_price = orders.reduce(
-  //     (a: number, v: any) => (a += parseInt(v.price) * parseInt(v.quantity)),
-  //     0
-  //   );
-  //   console.log(total_price);
   useEffect(() => {
     // eslint-disable-next-line
-  }, [state]);
+  }, [delete_wishlist]);
   const removeCart = (id: string) => {
-    console.log(id);
-    setstate(c => c + 1);
     wishlists = wishlists.filter((wishlist: any) => wishlist.id !== id);
     localStorage.setItem("wishlist", JSON.stringify(wishlists));
-    deleteWishList(dispatch, id);
+    deleteWishList(dispatch, id, wishlists.length);
   };
   return (
-    <Div>
+    <Div data-aos='fade-left'>
       <h1>Your WishList</h1>
       <Table celled padded>
         <Table.Header>
@@ -39,7 +32,6 @@ const WishList = () => {
               Product Description / Category_type
             </Table.HeaderCell>
             <Table.HeaderCell>Category</Table.HeaderCell>
-            <Table.HeaderCell>Quantity</Table.HeaderCell>
             <Table.HeaderCell>Price</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -51,20 +43,22 @@ const WishList = () => {
               b.push(a);
             });
             return (
-              <Table.Row key={wishlist.id}>
+              <Table.Row key={wishlist.id} data-aos='zoom-in-up'>
                 <Table.Cell
                   style={{ padding: "0 !important", margin: "0 !important" }}
                 >
                   <Header as='h2' textAlign='center' style={{ width: "80px" }}>
-                    <img
-                      src={b[0]}
-                      alt={wishlist.title}
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                        borderRadius: "10%"
-                      }}
-                    />
+                    <Link to={`/single/${wishlist.id}`}>
+                      <img
+                        src={b[0]}
+                        alt={wishlist.title}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          borderRadius: "10%"
+                        }}
+                      />
+                    </Link>
                   </Header>
                 </Table.Cell>
                 <Table.Cell singleLine>{wishlist.title}</Table.Cell>

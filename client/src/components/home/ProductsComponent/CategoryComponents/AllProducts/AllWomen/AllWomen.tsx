@@ -1,5 +1,9 @@
 import React from "react";
-import { getProducts, addOrder } from "../../../../../productReducer/actions";
+import {
+  getProducts,
+  addOrder,
+  addWishList
+} from "../../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Product, Div } from "./AllWomenStyle";
@@ -49,8 +53,14 @@ const AllWomen = () => {
 
   women_products = state ? state : women_products;
 
+  const quantity: string = "1";
+
   const handleCart = (product: any) => {
-    addOrder(dispatch, product);
+    addOrder(dispatch, product, quantity);
+  };
+
+  const handleWishList = (pro: any) => {
+    addWishList(dispatch, pro);
   };
 
   return (
@@ -67,13 +77,18 @@ const AllWomen = () => {
       </div>
       {/* <CSSTransition in={true} timeout={1000} className='my-node' unmountOnExit> */}
       <Product>
-        {women_products.map((product: any) => {
+        {women_products.map((product: any, i: number) => {
           let b: any = [];
           JSON.parse(product.image_url).map((a: any) => {
             b.push(a);
           });
           return (
-            <div key={product.id} className='second-section-card'>
+            <div
+              key={product.id}
+              className='second-section-card'
+              data-aos='fade-right'
+              data-aos-delay={(i + 1) * 100}
+            >
               <div className='second-section-image'>
                 <img src={b[0]} alt={product.title} />
                 <div className='second-section-overlay'>
@@ -83,10 +98,13 @@ const AllWomen = () => {
                         <i className='fas fa-external-link-alt'></i>
                       </Link>
                     </div>
-                    <div className='cart' onClick={handleCart}>
+                    <div className='cart' onClick={() => handleCart(product)}>
                       <i className='fas fa-cart-plus'></i>
                     </div>
-                    <div className='cart'>
+                    <div
+                      className='cart'
+                      onClick={() => handleWishList(product)}
+                    >
                       <i className='fas fa-heart'></i>
                     </div>
                   </div>

@@ -47,11 +47,13 @@ const AllMen = () => {
     }
   };
 
+  const quantity: string = "1";
+
   // filtering products
   men_products = state ? state : men_products;
 
   const handleCart = (product: any) => {
-    addOrder(dispatch, product);
+    addOrder(dispatch, product, quantity);
   };
 
   return (
@@ -67,13 +69,18 @@ const AllMen = () => {
         </select>
       </div>
       <Product>
-        {men_products.map((product: any) => {
+        {men_products.map((product: any, i: number) => {
           let b: any = [];
           JSON.parse(product.image_url).map((a: any) => {
             b.push(a);
           });
           return (
-            <div key={product.id} className='second-section-card'>
+            <div
+              key={product.id}
+              className='second-section-card'
+              data-aos='fade-left'
+              data-aos-delay={(i + 1) * 100}
+            >
               <div className='second-section-image'>
                 <img src={b[0]} alt={product.title} />
                 <div className='second-section-overlay'>

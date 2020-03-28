@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import "./App.css";
@@ -15,10 +16,38 @@ import CartComponent from "./components/orders/CartComponent";
 import WishList from "./components/wishlist/WishList";
 
 function App() {
+  const [state, setState] = useState(false);
+  window.onscroll = () => {
+    if (window.scrollY > 530) {
+      setState(true);
+    } else {
+      setState(false);
+    }
+  };
+
+  const handleScrollUp = () => {
+    window.scrollTo(0, 0);
+  };
+
+  const style: any = {
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    zIndex: "30"
+  };
   return (
     <Provider store={store}>
       <Router>
-        <NavBar />
+        <NavBar state={state} />
+        {state && (
+          <Button
+            data-aos='zoom-in'
+            circular
+            icon='angle up'
+            style={style}
+            onClick={handleScrollUp}
+          />
+        )}
         <Switch>
           <Route exact path='/'>
             <div className='App'>

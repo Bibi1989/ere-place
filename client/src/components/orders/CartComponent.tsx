@@ -3,35 +3,29 @@ import { Table, Header, Button, Icon } from "semantic-ui-react";
 import { Div } from "./CartComponentStyle";
 import { getOrders, deleteOrder } from "../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CartComponent = () => {
   const dispatch = useDispatch();
-  const [state, setstate] = useState(1);
-  //   const orders = useSelector(
-  //     ({ productReducer }: any) => productReducer.orders
-  //   );
   const order: any = localStorage.getItem("fashion");
   let orders = JSON.parse(order);
   const delete_msg = useSelector(
-    ({ productReducer }: any) => productReducer.order
+    ({ productReducer }: any) => productReducer.delete_msg
   );
   const total_price = orders.reduce(
     (a: number, v: any) => (a += parseInt(v.price) * parseInt(v.quantity)),
     0
   );
-  //   console.log(total_price);
   useEffect(() => {
     // eslint-disable-next-line
-  }, [state]);
-  console.log("Delete msg", delete_msg);
+  }, [delete_msg]);
   const removeCart = (id: string) => {
-    setstate(c => c + 1);
     orders = orders.filter((order: any) => order.id !== id);
     localStorage.setItem("fashion", JSON.stringify(orders));
-    deleteOrder(dispatch, id);
+    deleteOrder(dispatch, id, orders.length);
   };
   return (
-    <Div>
+    <Div data-aos='fade-left'>
       <h1>Your Cart</h1>
       <Table celled padded>
         <Table.Header>
@@ -48,18 +42,32 @@ const CartComponent = () => {
         </Table.Header>
 
         <Table.Body>
-          {orders.map((order: any) => {
+          {orders.map((order: any, i: number) => {
             let b: any = [];
             JSON.parse(order.image_url).map((a: any) => {
               b.push(a);
             });
             return (
-              <Table.Row key={order.id}>
+              <Table.Row
+                key={order.id}
+                data-aos='zoom-in-up'
+                data-aos-delay={(i + 1) * 100}
+              >
                 <Table.Cell
                   style={{ padding: "0 !important", margin: "0 !important" }}
                 >
                   <Header as='h2' textAlign='center' style={{ width: "80px" }}>
-                    <img src={b[0]} alt={order.title} style={{width: '100px', height: '100px', borderRadius: '10%'}} />
+                    <Link to={`/single/${order.id}`}>
+                      <img
+                        src={b[0]}
+                        alt={order.title}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          borderRadius: "10%"
+                        }}
+                      />
+                    </Link>
                   </Header>
                 </Table.Cell>
                 <Table.Cell singleLine>{order.title}</Table.Cell>
@@ -83,7 +91,7 @@ const CartComponent = () => {
         </Table.Body>
       </Table>
 
-      <h1>
+      <h1 data-aos='zoom-in-up'>
         <span>Total Amount: </span> <span>&#8358;</span>{" "}
         <span>{total_price}</span>
       </h1>

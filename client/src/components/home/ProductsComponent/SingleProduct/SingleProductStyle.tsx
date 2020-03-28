@@ -8,6 +8,7 @@ export const SingleView = styled.div`
     width: 70%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
     margin-top: 10px;
     overflow: hidden;
 
@@ -15,8 +16,13 @@ export const SingleView = styled.div`
       min-width: 100%;
       height: 20vh;
       overflow: hidden;
+      cursor: pointer;
+      position: relative;
 
       img {
+        background: #fff;
+        opacity: 0.4;
+        border-radius: 1em;
         width: 100%;
         min-height: 100%;
       }
@@ -42,6 +48,13 @@ export const SingleView = styled.div`
 
     .second-section-detail {
       color: #555;
+      .quantity-select {
+        margin: 1.5em 0;
+
+        .select {
+          outline: none;
+        }
+      }
       .second-section-content-one {
         p:first-child {
           font-size: 2rem;

@@ -1,5 +1,9 @@
 import React from "react";
-import { getProducts, addOrder } from "../../../../productReducer/actions";
+import {
+  getProducts,
+  addOrder,
+  addWishList
+} from "../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Div } from "./MenCategoryStyle";
@@ -21,8 +25,14 @@ const MenCategory = () => {
     .filter((men: any) => men.category.toLowerCase() === "men")
     .slice(0, 3);
 
+  const quantity: string = "1";
+
   const handleCart = (product: any) => {
-    addOrder(dispatch, product);
+    addOrder(dispatch, product, quantity);
+  };
+
+  const handleWishList = (product: any) => {
+    addWishList(dispatch, product);
   };
 
   return (
@@ -31,6 +41,7 @@ const MenCategory = () => {
         products={men_products}
         title='Men Wears'
         handleCart={handleCart}
+        handleWishList={handleWishList}
       />
       ;
       <button>

@@ -6,7 +6,7 @@ import WomenCategory from "./ProductsComponent/CategoryComponents/WomenCategory/
 const TrySomething = () => {
   return (
     <>
-      <Div>
+      <Div data-aos='zoom-in'>
         <div className='overlay-section'>
           <button>Men Wears</button>
           <button>Women Wears</button>

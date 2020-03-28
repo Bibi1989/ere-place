@@ -28,6 +28,7 @@ export const Product = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
+    max-height: 350px;
     color: #777;
     overflow: hidden;
     border-radius: 40px 0 1px 0;
