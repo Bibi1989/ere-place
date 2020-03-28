@@ -84,12 +84,12 @@ export const Product = styled.div`
           i {
             color: orangered;
             font-size: 1.7rem;
-            padding: 0.8rem 0;
+            margin: 1rem 0;
             cursor: pointer;
             transition: all 0.4s ease;
 
             &:hover {
-              transform: scale(1.15);
+              transform: scale(1.95);
             }
           }
         }
@@ -100,7 +100,7 @@ export const Product = styled.div`
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-end;
-        right: 0;
+        right: 10px;
         bottom: 0px;
         padding: 15px;
         width: 100%;

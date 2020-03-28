@@ -76,7 +76,10 @@ export const addOrder = async (
       return order;
     });
   }
-  fashion_products.push({ ...orders, quantity });
+  fashion_products.push({
+    ...orders,
+    quantity: `${quantity === undefined ? "1" : quantity}`
+  });
   localStorage.setItem("fashion", JSON.stringify(fashion_products));
   dispatch({ type: ADD_ORDER, payload: fashion_products.length });
 };

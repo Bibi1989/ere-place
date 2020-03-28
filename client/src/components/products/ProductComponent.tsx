@@ -36,21 +36,19 @@ const ProductComponent = ({
                             <i className='fas fa-external-link-alt'></i>
                           </Link>
                         </div>
-                        <div
-                          className='cart'
-                          onClick={() => {
-                            handleCart(product);
-                          }}
-                        >
+                        <div className='cart'>
                           {/* <span>Add To Cart</span> */}
-                          <i className='fas fa-cart-plus'></i>
+                          <i
+                            className='fas fa-cart-plus'
+                            onClick={() => handleCart(product)}
+                          ></i>
                         </div>
-                        <div
-                          className='cart'
-                          onClick={() => handleWishList(product)}
-                        >
+                        <div className='cart'>
                           {/* <span>Add To Wishlist</span> */}
-                          <i className='fas fa-heart'></i>
+                          <i
+                            className='fas fa-heart'
+                            onClick={() => handleWishList(product)}
+                          ></i>
                         </div>
                       </div>
                     </div>

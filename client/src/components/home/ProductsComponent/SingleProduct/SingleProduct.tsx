@@ -11,18 +11,6 @@ import {
 } from "../../../productReducer/actions";
 import ProductComponent from "../../../products/ProductComponent";
 
-const selectArray: any = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-  { value: "4", label: "4" },
-  { value: "5", label: "5" },
-  { value: "6", label: "6" },
-  { value: "7", label: "7" },
-  { value: "8", label: "8" },
-  { value: "9", label: "9" }
-];
-
 const SingleProduct = () => {
   const fashion: any = localStorage.getItem("fashion");
   const fashions: any = JSON.parse(fashion);
@@ -40,6 +28,11 @@ const SingleProduct = () => {
   const product = useSelector(
     ({ productReducer }: any) => productReducer.product
   );
+  const selectArray: any = [];
+
+  for (let i = 0; i < product.stock; i++) {
+    selectArray.push({ value: `${i + 1}`, label: `${i + 1}` });
+  }
   useEffect(() => {
     getSingleProduct(dispatch, singleId);
     getProducts(dispatch);
@@ -66,8 +59,6 @@ const SingleProduct = () => {
     setQuantity(quantity);
     setCheck1(!check1);
   };
-
-  console.log("Quantity: ", typeof quantity.label);
 
   const handleCart = (pro: any) => {
     addOrder(dispatch, pro, quantity.label);
@@ -136,6 +127,22 @@ const SingleProduct = () => {
               />
             </div>
 
+            <div>
+              Avalable Stock
+              <span
+                style={{
+                  fontSize: "1.2em",
+                  color: "teal",
+                  border: "1px solid teal",
+                  padding: "0.2em 0.5em",
+                  borderRadius: "50%",
+                  marginLeft: "0.5em"
+                }}
+              >
+                {" " + product !== undefined && product.stock}
+              </span>
+            </div>
+
             <div className='second-section-overlay'>
               <div className='overlay-icons'>
                 <button
@@ -191,7 +198,12 @@ const SingleProduct = () => {
         </div>
       </SingleView>
       <Div data-aos='fade-left'>
-        <ProductComponent products={products} title='You May Also Like' />
+        <ProductComponent
+          products={products}
+          title='You May Also Like'
+          handleCart={handleCart}
+          handleWishList={handleWishList}
+        />
       </Div>
     </>
   );

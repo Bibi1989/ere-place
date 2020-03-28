@@ -10,6 +10,7 @@ const cloud_base_name: any = process.env.REACT_APP_CLOUDINARY_BASE_URL;
 
 const AddProducts = () => {
   const [imageUrl, setImageUrl] = React.useState<any[]>([]);
+  const [showButton, setShowButton] = React.useState(false);
   const [form, setForm] = React.useState({
     title: "",
     category: "",
@@ -22,7 +23,7 @@ const AddProducts = () => {
   let d: any = [];
   const hancha = (e: any) => {
     const data = new FormData();
-    console.log(e.target.files);
+    setShowButton(false);
     data.append("file", e.target.files[0]);
     data.append("upload_preset", upload_preset);
     axios
@@ -32,13 +33,13 @@ const AddProducts = () => {
         }
       })
       .then(res => {
-        console.log(res.data.secure_url);
         d.concat(res.data.secure_url);
         setImageUrl([...imageUrl, res.data.secure_url]);
+        setShowButton(true);
       })
       .catch(err => console.log(err.response));
   };
-  console.log({d, imageUrl});
+  console.log({ d, imageUrl });
   const handleInput = (e: any) => {
     setForm({
       ...form,
@@ -56,7 +57,6 @@ const AddProducts = () => {
   const onsubmit = (e: any) => {
     e.preventDefault();
     let image = JSON.stringify(imageUrl);
-    console.log(image)
     const data = {
       ...form,
       image_url: image
@@ -110,7 +110,9 @@ const AddProducts = () => {
           onChange={handleInput}
         />
         <input type='file' name='file' onChange={hancha} />
-        {imageUrl.length !== 0 && <button type='submit'>Submit</button>}
+        {imageUrl.length !== 0 && showButton && (
+          <button type='submit'>Submit</button>
+        )}
       </form>
     </Div>
   );

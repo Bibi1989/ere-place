@@ -23,13 +23,16 @@ export const Div = styled.div`
   .select {
     align-self: flex-end;
     color: #777;
+    font-size: 1.5em;
     border: none;
     outline: none;
     padding-right: 0;
     padding-bottom: 1%;
+    margin: 1em 0;
 
     i {
       font-size: 1.5rem;
+      margin-right: 1.2em;
     }
 
     select {
@@ -116,12 +119,12 @@ export const Product = styled.div`
           i {
             color: orangered;
             font-size: 1.7rem;
-            padding: 0.8rem 0;
+            margin: 0.8rem 0;
             cursor: pointer;
             transition: all 0.4s ease;
 
             &:hover {
-              transform: scale(1.15);
+              transform: scale(1.95);
             }
           }
         }
@@ -132,7 +135,7 @@ export const Product = styled.div`
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-end;
-        right: 0;
+        right: 10px;
         bottom: 0px;
         padding: 15px;
         width: 100%;
