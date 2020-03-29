@@ -6,7 +6,6 @@ import {
   addWishList
 } from "../../../productReducer/actions";
 import ProductComponent from "../../../products/ProductComponent";
-import { Productss } from "../../../productReducer/interfaces";
 import { Div } from "./SecondSectionStyle";
 
 const SecondSection = () => {
@@ -16,19 +15,21 @@ const SecondSection = () => {
     getProducts(dispatch);
     // eslint-disable-next-line
   }, []);
-  const products = useSelector(
-    ({ productReducer }: any) => productReducer.products
-  ).slice(0, 6);
+  const products =
+    useSelector(({ productReducer }: any) => productReducer.products).slice(
+      0,
+      6
+    ) || [];
 
   const handleSelect = (e: any) => {
     const sorted = [...products].reverse();
     setState(sorted);
     const sortByDate = [...products].reverse();
     const sortByPriceLowHigh = [...products].sort(
-      (a: Productss, b: Productss) => parseInt(a.price) - parseInt(b.price)
+      (a: any, b: any) => parseInt(a.price) - parseInt(b.price)
     );
     const sortByPriceHighLow = [...products].sort(
-      (a: Productss, b: Productss) => parseInt(b.price) - parseInt(a.price)
+      (a: any, b: any) => parseInt(b.price) - parseInt(a.price)
     );
     if (e.target.value === "date") {
       return setState(sortByDate);

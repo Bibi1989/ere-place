@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { Product, Div } from "./ProductStyle";
 
@@ -16,7 +17,8 @@ const ProductComponent = ({
           {products !== undefined &&
             products.map((product: any, i: number) => {
               let b: any = [];
-              JSON.parse(product.image_url).map((a: any) => {
+              let c: any = JSON.parse(product.image_url) || [];
+              c.forEach((a: any) => {
                 b.push(a);
               });
               return (
@@ -26,51 +28,60 @@ const ProductComponent = ({
                   data-aos='fade-left'
                   data-aos-delay={(i + 1) * 100}
                 >
-                  <div className='second-section-image'>
-                    <img src={b[0]} alt={product.title} />
-                    <div className='second-section-overlay'>
-                      <div className='overlay-icons'>
-                        <div className='cart'>
-                          {/* <span>View Product</span> */}
-                          <Link to={`/single/${product.id}`}>
-                            <i className='fas fa-external-link-alt'></i>
-                          </Link>
-                        </div>
-                        <div className='cart'>
-                          {/* <span>Add To Cart</span> */}
-                          <i
-                            className='fas fa-cart-plus'
-                            onClick={() => handleCart(product)}
-                          ></i>
-                        </div>
-                        <div className='cart'>
-                          {/* <span>Add To Wishlist</span> */}
-                          <i
-                            className='fas fa-heart'
-                            onClick={() => handleWishList(product)}
-                          ></i>
+                  {products.length > 0 ? (
+                    <>
+                      <div className='second-section-image'>
+                        <img
+                          src={b !== undefined && b[0]}
+                          alt={product.title}
+                        />
+                        <div className='second-section-overlay'>
+                          <div className='overlay-icons'>
+                            <div className='cart'>
+                              {/* <span>View Product</span> */}
+                              <Link to={`/single/${product.id}`}>
+                                <Icon name='info'></Icon>
+                              </Link>
+                            </div>
+                            <div className='cart'>
+                              {/* <span>Add To Cart</span> */}
+                              <Icon
+                                name='shopping bag'
+                                onClick={() => handleCart(product)}
+                              ></Icon>
+                            </div>
+                            <div className='cart'>
+                              {/* <span>Add To Wishlist</span> */}
+                              <Icon
+                                name='heart'
+                                onClick={() => handleWishList(product)}
+                              ></Icon>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className='second-section-detail'>
-                    <div className='second-section-content-one'>
-                      <p>
-                        {product.title.length > 16
-                          ? `${product.title.slice(0, 16)}...`
-                          : product.title}
-                      </p>
-                      <p>
-                        {product.location[0].toUpperCase() +
-                          product.location.slice(1)}
-                      </p>
-                    </div>
-                    <div className='second-section-content-two'>
-                      <p>
-                        <span>$</span> {product.price}
-                      </p>
-                    </div>
-                  </div>
+                      <div className='second-section-detail'>
+                        <div className='second-section-content-one'>
+                          <p>
+                            {product.title.length > 16
+                              ? `${product.title.slice(0, 16)}...`
+                              : product.title}
+                          </p>
+                          <p>
+                            {product.location[0].toUpperCase() +
+                              product.location.slice(1)}
+                          </p>
+                        </div>
+                        <div className='second-section-content-two'>
+                          <p>
+                            <span>$</span> {product.price}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div>No Products Yet</div>
+                  )}
                 </div>
               );
             })}

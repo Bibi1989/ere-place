@@ -8,11 +8,12 @@ import { Link } from "react-router-dom";
 const CartComponent = () => {
   const dispatch = useDispatch();
   const order: any = localStorage.getItem("fashion");
-  let orders = JSON.parse(order);
+  let orders: any = JSON.parse(order) || [];
+  console.log(orders);
   const delete_msg = useSelector(
     ({ productReducer }: any) => productReducer.delete_msg
   );
-  const total_price = orders.reduce(
+  const total_price: number | null = orders.reduce(
     (a: number, v: any) => (a += parseInt(v.price) * parseInt(v.quantity)),
     0
   );
@@ -44,7 +45,7 @@ const CartComponent = () => {
         <Table.Body>
           {orders.map((order: any, i: number) => {
             let b: any = [];
-            JSON.parse(order.image_url).map((a: any) => {
+            JSON.parse(order.image_url).forEach((a: any) => {
               b.push(a);
             });
             return (
@@ -81,8 +82,11 @@ const CartComponent = () => {
                   <span>&#8358;</span> {order.price}
                   <br />
                   <br />
-                  <Button color='red' icon onClick={() => removeCart(order.id)}>
-                    <Icon name='trash' color='red' />
+                  <Button
+                    style={{ background: "white" }}
+                    onClick={() => removeCart(order.id)}
+                  >
+                    <Icon size='large' name='trash' color='red' />
                   </Button>
                 </Table.Cell>
               </Table.Row>
@@ -93,7 +97,7 @@ const CartComponent = () => {
 
       <h1 data-aos='zoom-in-up'>
         <span>Total Amount: </span> <span>&#8358;</span>{" "}
-        <span>{total_price}</span>
+        <span>{total_price !== null && total_price}</span>
       </h1>
     </Div>
   );

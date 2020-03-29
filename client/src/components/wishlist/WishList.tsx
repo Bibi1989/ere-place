@@ -11,7 +11,7 @@ const WishList = () => {
     ({ productReducer }: any) => productReducer.delete_wishlist
   );
   const wish: any = localStorage.getItem("wishlist");
-  let wishlists = JSON.parse(wish);
+  let wishlists = JSON.parse(wish) || [];
   useEffect(() => {
     // eslint-disable-next-line
   }, [delete_wishlist]);
@@ -73,11 +73,10 @@ const WishList = () => {
                   <br />
                   <br />
                   <Button
-                    color='red'
-                    icon
+                    style={{ background: "white" }}
                     onClick={() => removeCart(wishlist.id)}
                   >
-                    <Icon name='trash' />
+                    <Icon size='large' color='red' name='trash' />
                   </Button>
                 </Table.Cell>
               </Table.Row>

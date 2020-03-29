@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "semantic-ui-react";
 import {
   getProducts,
   addOrder,
@@ -79,7 +80,7 @@ const AllWomen = () => {
       <Product>
         {women_products.map((product: any, i: number) => {
           let b: any = [];
-          JSON.parse(product.image_url).map((a: any) => {
+          JSON.parse(product.image_url).forEach((a: any) => {
             b.push(a);
           });
           return (
@@ -95,17 +96,20 @@ const AllWomen = () => {
                   <div className='overlay-icons'>
                     <div className='cart'>
                       <Link to={`/single/${product.id}`}>
-                        <i className='fas fa-external-link-alt'></i>
+                        <Icon name='info'></Icon>
                       </Link>
                     </div>
-                    <div className='cart' onClick={() => handleCart(product)}>
-                      <i className='fas fa-cart-plus'></i>
+                    <div className='cart'>
+                      <Icon
+                        name='shopping bag'
+                        onClick={() => handleCart(product)}
+                      ></Icon>
                     </div>
-                    <div
-                      className='cart'
-                      onClick={() => handleWishList(product)}
-                    >
-                      <i className='fas fa-heart'></i>
+                    <div className='cart'>
+                      <Icon
+                        name='heart'
+                        onClick={() => handleWishList(product)}
+                      ></Icon>
                     </div>
                   </div>
                 </div>

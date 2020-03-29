@@ -12,8 +12,8 @@ import {
 import axios from "axios";
 import { Products } from "./interfaces";
 
-// let url = `https://ere-place-api.herokuapp.com`;
-let url = `http://localhost:4000`;
+let url = `https://ere-place-api.herokuapp.com`;
+// let url = `http://localhost:4000`;
 const fashion_product: any = localStorage.getItem("fashion");
 const wishlist: any = localStorage.getItem("wishlist");
 let fashion_products = JSON.parse(fashion_product) || [];
@@ -40,7 +40,7 @@ const orderAction = (order: Products) => ({
 });
 
 export const getProducts = async (dispatch: any) => {
-  const products = await axios.get(`http://localhost:4000/api/products`);
+  const products = await axios.get(`${url}/api/products`);
   dispatch(getProductsAction(products.data.products));
 };
 export const getSingleProduct = async (dispatch: any, id: string) => {
@@ -85,6 +85,7 @@ export const addOrder = async (
     quantity: `${quantity === undefined ? "1" : quantity}`,
     product_id: orders.id
   });
+  console.log(fashion_products.length);
   localStorage.setItem("fashion", JSON.stringify(fashion_products));
   dispatch({ type: ADD_ORDER, payload: fashion_products.length });
 };

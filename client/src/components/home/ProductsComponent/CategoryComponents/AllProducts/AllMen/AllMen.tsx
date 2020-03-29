@@ -1,5 +1,10 @@
 import React from "react";
-import { getProducts, addOrder } from "../../../../../productReducer/actions";
+import { Icon } from "semantic-ui-react";
+import {
+  getProducts,
+  addOrder,
+  addWishList
+} from "../../../../../productReducer/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Product, Div } from "./AllMenStyle";
@@ -10,7 +15,7 @@ const AllMen = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     getProducts(dispatch);
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
 
     // eslint-disable-next-line
   }, []);
@@ -57,6 +62,10 @@ const AllMen = () => {
     addOrder(dispatch, product, quantity);
   };
 
+  const handleWishList = (product: any) => {
+    addWishList(dispatch, product);
+  };
+
   return (
     <Div>
       <h1>Men Wears</h1>
@@ -72,7 +81,8 @@ const AllMen = () => {
       <Product>
         {men_products.map((product: any, i: number) => {
           let b: any = [];
-          JSON.parse(product.image_url).map((a: any) => {
+          let c = JSON.parse(product.image_url) || [];
+          c.forEach((a: any) => {
             b.push(a);
           });
           return (
@@ -88,14 +98,20 @@ const AllMen = () => {
                   <div className='overlay-icons'>
                     <div className='cart'>
                       <Link to={`/single/${product.id}`}>
-                        <i className='fas fa-external-link-alt'></i>
+                        <Icon name='info'></Icon>
                       </Link>
                     </div>
-                    <div className='cart' onClick={handleCart}>
-                      <i className='fas fa-cart-plus'></i>
+                    <div className='cart'>
+                      <Icon
+                        name='shopping bag'
+                        onClick={() => handleCart(product)}
+                      ></Icon>
                     </div>
                     <div className='cart'>
-                      <i className='fas fa-heart'></i>
+                      <Icon
+                        name='heart'
+                        onClick={() => handleWishList(product)}
+                      ></Icon>
                     </div>
                   </div>
                 </div>

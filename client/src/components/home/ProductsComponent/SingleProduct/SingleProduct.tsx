@@ -13,7 +13,7 @@ import ProductComponent from "../../../products/ProductComponent";
 
 const SingleProduct = () => {
   const fashion: any = localStorage.getItem("fashion");
-  const fashions: any = JSON.parse(fashion);
+  const fashions: any = JSON.parse(fashion) || [];
 
   const { singleId }: any = useParams();
   const [image, setImage] = useState("");
@@ -34,6 +34,7 @@ const SingleProduct = () => {
   for (let i = 0; i < product.stock; i++) {
     selectArray.push({ value: `${i + 1}`, label: `${i + 1}` });
   }
+
   useEffect(() => {
     getSingleProduct(dispatch, singleId);
     getProducts(dispatch);
@@ -51,7 +52,7 @@ const SingleProduct = () => {
 
     // eslint-disable-next-line
   }, [dispatch, singleId]);
-  const d: number = product.image && product.image.length;
+  const d: number = product.image !== undefined && product.image.length;
   if (d === index) {
     setIndex(index % d);
   }
@@ -76,7 +77,7 @@ const SingleProduct = () => {
   };
 
   const wishlist: any = localStorage.getItem("wishlist");
-  const wishlists: any = JSON.parse(wishlist);
+  const wishlists: any = JSON.parse(wishlist) || [];
 
   const check = wishlists.some((wish: any) => wish.id === singleId);
 

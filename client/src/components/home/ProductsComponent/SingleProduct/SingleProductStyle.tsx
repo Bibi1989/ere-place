@@ -37,12 +37,17 @@ export const SingleView = styled.div`
       width: 100%;
       max-height: 70vh;
       border-radius: 10px;
-      overflow-y: hidden;
+      overflow: hidden;
       box-shadow: 0 0 60px #999;
 
       img {
         width: 100%;
         min-height: 100%;
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+          transform: scale(1.2);
+        }
       }
     }
 
