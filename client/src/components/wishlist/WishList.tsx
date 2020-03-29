@@ -77,7 +77,7 @@ const WishList = () => {
                     icon
                     onClick={() => removeCart(wishlist.id)}
                   >
-                    <Icon name='minus' />
+                    <Icon name='trash' />
                   </Button>
                 </Table.Cell>
               </Table.Row>

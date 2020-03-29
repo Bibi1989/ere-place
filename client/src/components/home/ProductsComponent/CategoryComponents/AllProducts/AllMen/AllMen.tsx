@@ -10,6 +10,7 @@ const AllMen = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     getProducts(dispatch);
+    window.scrollTo(0, 0)
 
     // eslint-disable-next-line
   }, []);

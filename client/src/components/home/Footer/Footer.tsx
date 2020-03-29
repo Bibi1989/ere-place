@@ -4,7 +4,7 @@ import { Footer, Div } from "./FooterStyle";
 
 const FooterComponent = () => {
   return (
-    <Div>
+    <Div data-aos='zoom-in'>
       <Footer>
         <div className='company'>
           <h2>COMPANY INFO</h2>

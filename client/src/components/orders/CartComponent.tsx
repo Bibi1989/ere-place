@@ -82,7 +82,7 @@ const CartComponent = () => {
                   <br />
                   <br />
                   <Button color='red' icon onClick={() => removeCart(order.id)}>
-                    <Icon name='minus' />
+                    <Icon name='trash' color='red' />
                   </Button>
                 </Table.Cell>
               </Table.Row>
